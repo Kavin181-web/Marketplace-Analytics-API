@@ -1,0 +1,543 @@
+{
+	"info": {
+		"_postman_id": "2f943758-d4ff-450d-b480-0dd7ece65f35",
+		"name": "Marketplace Analytics API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47319253",
+		"_collection_link": "https://kavinkumarmadesh-515251.postman.co/workspace/Kavinkumar-Madesh's-Workspace~96ce611c-bcb5-4480-836f-3a8c518efed8/collection/47319253-2f943758-d4ff-450d-b480-0dd7ece65f35?action=share&source=collection_link&creator=47319253"
+	},
+	"item": [
+		{
+			"name": "01.Basic-Setup",
+			"item": [
+				{
+					"name": "create a User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"idhal\",\r\n  \"email\": \"idhal@gmail.com@gmail.com\",\r\n  \"city\": \"mettur\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a Vendor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"geetha's parlour\",\r\n    \"gstin\":\"22AAAAb00621344\",\r\n    \"city\":\"chennai\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/vendors",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"vendors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\"    :  \"pace Pack\",\r\n    \"category\":  \"cream\",\r\n    \"price\"   :  159,\r\n    \"vendor\"  :  \"691a43bf1167184a73f4b0dd\",\r\n    \"stock\"   :  20\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create an order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\"   : \"691a43831167184a73f4b0db\",\r\n    \"vendor\" : \"691a43bf1167184a73f4b0dd\",\r\n    \"items\"  : [{\r\n\r\n        \"product\" :  \"691a44041167184a73f4b0df\",\r\n        \"qty\"     :  2\r\n\r\n    }\r\n        \r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/orders",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "make a payment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderId\" : \"691a44571167184a73f4b0e2\",\r\n    \"method\"  : \"UPI\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/payments/create",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"payments",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "webhook: server updates payment and order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"paymentId\" : \"691a448e1167184a73f4b0e8\",\r\n    \"orderId\"   : \"691a44571167184a73f4b0e2\",\r\n    \"success\"   : \"true\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/payments/webhook",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"payments",
+								"webhook"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a review",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\"   :  \"691a43831167184a73f4b0db\",\r\n    \"product\":  \"691a44041167184a73f4b0df\",\r\n    \"rating\" :  4.7,\r\n    \"comment\":  \"Good\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/reviews",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "o2.App Operations",
+			"item": [
+				{
+					"name": "get users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get vendors",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"vijay\",\r\n    \"gstin\":\"22AAAAA0000A1Z5\",\r\n    \"city\":\"Chennai\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/vendors",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"vendors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all products",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get vendorsById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/vendors/691a43bf1167184a73f4b0dd",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"vendors",
+								"691a43bf1167184a73f4b0dd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product ById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/products/691a44041167184a73f4b0df",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"691a44041167184a73f4b0df"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "03.Analytics Testing",
+			"item": [
+				{
+					"name": "analytics/top-vendors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/analytics/top-vendors",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"analytics",
+								"top-vendors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "analytics/top-products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/analytics/top-products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"analytics",
+								"top-products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "analytics/category-stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/analytics/category-stats",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"analytics",
+								"category-stats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "analytics/vendor-rating ById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/analytics/vendor-rating/691a43bf1167184a73f4b0dd",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"analytics",
+								"vendor-rating",
+								"691a43bf1167184a73f4b0dd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check Analytics Summary",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/analytics/summary",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"analytics",
+								"summary"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "analytics/revenue-trend",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/analytics/revenue-trend",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"analytics",
+								"revenue-trend"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
