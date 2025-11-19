@@ -1,5 +1,6 @@
 require('dotenv').config();  // loading .env file values
 
+
 const app = require('./src/app'); // Importing the Express app instance from app.js
 const connectDB = require('./src/config/db');  // Importing our MongoDB connection function
 const PORT = process.env.PORT || 5000;  // Setting the port number from environment variables, or default to 5000
@@ -18,4 +19,7 @@ const PORT = process.env.PORT || 5000;  // Setting the port number from environm
     console.error('Failed to start', err);
     process.exit(1);  
   }
-})();
+})
+();
+
+
